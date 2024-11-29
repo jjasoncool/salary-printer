@@ -1,6 +1,5 @@
 import pandas as pd
 from tkinter import filedialog, messagebox
-from src.layout import show_data
 
 class ExcelImporter:
     def __init__(self, root, year_var, month_var):
@@ -8,11 +7,15 @@ class ExcelImporter:
         self.year_var = year_var
         self.month_var = month_var
         self.df = None  # 用於存儲匯入的資料
+        self.df_people = None  # 用於存儲人員資料
 
     def import_excel(self):
         file_path = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx *.xls")])
         if file_path:
-            df = pd.read_excel(file_path, skiprows=4, header=None)  # 跳過前4行，從第5行開始讀取，且不將任何行設為標題
+            # 跳過前4行，從第5行開始讀取，且不將任何行設為標題
+            df = pd.read_excel(file_path, skiprows=4, header=None, sheet_name=0, usecols="A:AE")
+            self.df_people = pd.read_excel(file_path, skiprows=1, header=None, sheet_name=1)
+
             # 檢查是否有資料
             has_data = not df.empty
 
@@ -29,7 +32,8 @@ class ExcelImporter:
                 df["月份"] = df["月份"].astype(str)
 
                 self.df = df  # 存儲匯入的資料
-                self.filter_data()  # 過濾並顯示資料
+                # 過濾資料
+                return self.filter_data()
 
     def filter_data(self):
         if self.df is not None:
@@ -42,6 +46,6 @@ class ExcelImporter:
             if filtered_df.empty:
                 messagebox.showinfo("無資料", f"沒有找到符合年份 {year} 和月份 {month} 的資料。")
             else:
-                show_data(self.root, filtered_df)
+                return filtered_df
         else:
             messagebox.showinfo("查無資料", "請先匯入 Excel 檔案。")

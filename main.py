@@ -1,6 +1,14 @@
 import tkinter as tk
-from src.layout import create_date_frame
+from src.layout import create_date_frame, show_data
 from src.excel_importer import ExcelImporter
+
+def show_treeview(root, excel_importer, refresh=False):
+    if refresh:
+        filtered_df = excel_importer.filter_data()
+    else:
+        filtered_df = excel_importer.import_excel()
+
+    show_data(root, filtered_df)
 
 def create_gui():
     root = tk.Tk()
@@ -15,10 +23,10 @@ def create_gui():
     button_frame = tk.Frame(root)
     button_frame.pack(pady=20)
 
-    import_button = tk.Button(button_frame, text="選擇 Excel 檔案", command=excel_importer.import_excel)
+    import_button = tk.Button(button_frame, text="選擇 Excel 檔案", command= lambda: show_treeview(root, excel_importer))
     import_button.pack(side=tk.LEFT, padx=10)
 
-    refresh_button = tk.Button(button_frame, text="重新整理", command=excel_importer.filter_data)
+    refresh_button = tk.Button(button_frame, text="重新整理", command= lambda: show_treeview(root, excel_importer, refresh=True))
     refresh_button.pack(side=tk.LEFT, padx=10)
 
     root.mainloop()
