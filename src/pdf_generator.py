@@ -11,7 +11,7 @@ class PDFGenerator:
         return mapping
 
     @staticmethod
-    def generate():
+    def generate(df):
         mapping = PDFGenerator.load_mapping()
-        print("Generating PDF...")
         print(mapping)
+        print(df)

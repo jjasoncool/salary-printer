@@ -11,6 +11,10 @@ def show_treeview(root, excel_importer, refresh=False):
 
     show_data(root, filtered_df)
 
+def generate_pdf(excel_importer):
+    df = excel_importer.filter_data()
+    PDFGenerator.generate(df)
+
 def create_gui():
     root = tk.Tk()
     root.title("Excel 匯入介面")
@@ -18,6 +22,8 @@ def create_gui():
 
     # 建立年份和月份選擇框架(UI)
     year_var, month_var = create_date_frame(root)
+
+    # 建立 Excel 匯入器
     excel_importer = ExcelImporter(root, year_var, month_var)
 
     # 建立按鈕框架
@@ -30,7 +36,7 @@ def create_gui():
     refresh_button = tk.Button(button_frame, text="重新整理", command= lambda: show_treeview(root, excel_importer, refresh=True))
     refresh_button.pack(side=tk.LEFT, padx=10)
 
-    pdf_button = tk.Button(button_frame, text="產生 PDF", command=PDFGenerator.generate)
+    pdf_button = tk.Button(button_frame, text="產生 PDF", command= lambda: generate_pdf(excel_importer))
     pdf_button.pack(side=tk.LEFT, padx=10)
 
     root.mainloop()
