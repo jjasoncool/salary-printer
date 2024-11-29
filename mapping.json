@@ -1,0 +1,122 @@
+{
+    "comp_name": "臺灣環海探測技術股份有限公司",
+    "mapping": [
+        {
+            "df_column": 1,
+            "xlsx_cell": "B5"
+        },
+        {
+            "df_column": 2,
+            "xlsx_cell": "C5"
+        },
+        {
+            "df_column": 3,
+            "xlsx_cell": "B4"
+        },
+        {
+            "df_column": 4,
+            "xlsx_cell": "B7"
+        },
+        {
+            "df_column": 5,
+            "xlsx_cell": "B10"
+        },
+        {
+            "df_column": 7,
+            "xlsx_cell": "B11"
+        },
+        {
+            "df_column": 9,
+            "xlsx_cell": "B12"
+        },
+        {
+            "df_column": 10,
+            "xlsx_cell": "B13"
+        },
+        {
+            "df_column": 11,
+            "xlsx_cell": "B14"
+        },
+        {
+            "df_column": 12,
+            "xlsx_cell": "B8"
+        },
+        {
+            "df_column": 13,
+            "xlsx_cell": "B9"
+        },
+        {
+            "df_column": 14,
+            "xlsx_cell": "B15"
+        },
+        {
+            "df_column": 15,
+            "xlsx_cell": "B17"
+        },
+        {
+            "df_column": 16,
+            "xlsx_cell": "E7"
+        },
+        {
+            "df_column": 17,
+            "xlsx_cell": "E8"
+        },
+        {
+            "df_column": 18,
+            "xlsx_cell": "E10"
+        },
+        {
+            "df_columns": [19, 20],
+            "xlsx_cell": "E11",
+            "operation": "sum"
+        },
+        {
+            "df_column": 21,
+            "xlsx_cell": "E9"
+        },
+        {
+            "df_column": 22,
+            "xlsx_cell": "E12"
+        },
+        {
+            "df_column": 23,
+            "xlsx_cell": "E17"
+        },
+        {
+            "df_column": 24,
+            "xlsx_cell": "D18"
+        },
+        {
+            "df_column": 24,
+            "xlsx_cell": "D18"
+        },
+        {
+            "df_column": 25,
+            "xlsx_cell": "B20"
+        },
+        {
+            "df_column": 26,
+            "xlsx_cell": "B21"
+        },
+        {
+            "df_column": 27,
+            "xlsx_cell": "B22"
+        },
+        {
+            "df_column": 28,
+            "xlsx_cell": "B23"
+        },
+        {
+            "df_column": 30,
+            "xlsx_cell": "B24"
+        },
+        {
+            "df_column": 31,
+            "xlsx_cell": "B25"
+        },
+        {
+            "df_column": 32,
+            "xlsx_cell": "D20"
+        }
+    ]
+}
