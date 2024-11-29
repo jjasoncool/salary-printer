@@ -1,6 +1,7 @@
 import tkinter as tk
 from src.layout import create_date_frame, show_data
 from src.excel_importer import ExcelImporter
+from src.pdf_generator import PDFGenerator
 
 def show_treeview(root, excel_importer, refresh=False):
     if refresh:
@@ -28,6 +29,9 @@ def create_gui():
 
     refresh_button = tk.Button(button_frame, text="重新整理", command= lambda: show_treeview(root, excel_importer, refresh=True))
     refresh_button.pack(side=tk.LEFT, padx=10)
+
+    pdf_button = tk.Button(button_frame, text="產生 PDF", command=PDFGenerator.generate)
+    pdf_button.pack(side=tk.LEFT, padx=10)
 
     root.mainloop()
 
