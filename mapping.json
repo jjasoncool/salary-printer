@@ -3,15 +3,18 @@
     "mapping": [
         {
             "df_column": 1,
-            "xlsx_cell": "B5"
+            "xlsx_cell": "B5",
+            "data_type": "string"
         },
         {
             "df_column": 2,
-            "xlsx_cell": "C5"
+            "xlsx_cell": "C5",
+            "data_type": "string"
         },
         {
             "df_column": 3,
-            "xlsx_cell": "B4"
+            "xlsx_cell": "B4",
+            "data_type": "string"
         },
         {
             "df_column": 4,
@@ -39,7 +42,8 @@
         },
         {
             "df_column": 12,
-            "xlsx_cell": "B8"
+            "xlsx_cell": "B8",
+            "data_type": "string"
         },
         {
             "df_column": 13,
@@ -116,7 +120,18 @@
         },
         {
             "df_column": 32,
-            "xlsx_cell": "D20"
+            "xlsx_cell": "D20",
+            "data_type": "string"
+        },
+        {
+            "df_column": 34,
+            "xlsx_cell": "E5",
+            "data_type": "string"
+        },
+        {
+            "df_column": 35,
+            "xlsx_cell": "E4",
+            "data_type": "date"
         }
     ]
 }

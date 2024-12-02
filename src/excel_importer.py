@@ -11,10 +11,17 @@ class ExcelImporter:
 
     def import_excel(self):
         file_path = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx *.xls")])
+        if not file_path:
+            # 如果按取消，則不進行任何操作
+            return
         if file_path:
             # 跳過前4行，從第5行開始讀取，且不將任何行設為標題
-            df = pd.read_excel(file_path, skiprows=4, header=None, sheet_name=0, usecols="A:AH")
-            self.df_people = pd.read_excel(file_path, skiprows=1, header=None, sheet_name=1)
+            try:
+                df = pd.read_excel(file_path, skiprows=4, header=None, sheet_name=0, usecols="A:AH")
+                self.df_people = pd.read_excel(file_path, skiprows=1, header=None, sheet_name=1)
+            except Exception as e:
+                messagebox.showerror("匯入錯誤", f"匯入 Excel 檔案時發生錯誤: {e}")
+                df = pd.DataFrame()
 
             # 檢查是否有資料
             has_data = not df.empty
@@ -32,6 +39,7 @@ class ExcelImporter:
                     "其他公司負擔", "單位補充保費", "保費小計", "實付總额", "備註", "密碼"
                 ]
                 df.columns = columns
+                self.df_people.columns = ["姓名", "職位", "到職日", "扣繳方式"]
 
                 # 將年度和月份轉換成字串格式
                 df["年度"] = df["年度"].astype(str)
@@ -48,10 +56,13 @@ class ExcelImporter:
             month = f"{int(self.month_var.get())}月"
 
             filtered_df = self.df[(self.df["年度"] == year) & (self.df["月份"] == month)]
+            # 結合人員資料
+            final_df = pd.merge(filtered_df, self.df_people, on="姓名", how="left")
 
-            if filtered_df.empty:
+            if final_df.empty:
                 messagebox.showinfo("無資料", f"沒有找到符合年份 {year} 和月份 {month} 的資料。")
+                return pd.DataFrame()
             else:
-                return filtered_df
+                return final_df
         else:
-            messagebox.showinfo("查無資料", "請先匯入 Excel 檔案。")
+            messagebox.showinfo("查無資料", "請匯入正確的 Excel 檔案。")

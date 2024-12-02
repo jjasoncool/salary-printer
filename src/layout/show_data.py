@@ -3,7 +3,15 @@ from tkinter import ttk
 from tkinter import font
 
 def show_data(root, df):
+    if df is not None:
+        if not df.empty:
+            show_data_in_treeview(root, df)
+            return True
+        else:
+            tk.messagebox.showinfo("提示", "請先確認 Excel 檔案資料是否正確。\n修改月份後可點選重新整理重新載入資料。")
+            return False
 
+def show_data_in_treeview(root, df):
     # 檢查是否已經存在 Treeview
     if hasattr(root, 'data_frame'):
         # 如果已經存在，清空原本的 Treeview

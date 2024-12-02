@@ -9,14 +9,12 @@ def show_treeview(root, excel_importer, refresh=False):
     else:
         filtered_df = excel_importer.import_excel()
 
-    if filtered_df is None or filtered_df.empty:
-        tk.messagebox.showinfo("提示", "請先確認 Excel 檔案資料是否正確。\n修改月份後可點選重新整理重新載入資料。")
-        return
     show_data(root, filtered_df)
 
-def generate_pdf(excel_importer):
+def generate_pdf(root, excel_importer):
     df = excel_importer.filter_data()
-    PDFGenerator.generate(df)
+    if show_data(root, df):
+        PDFGenerator.generate(df)
 
 def create_gui():
     root = tk.Tk()
@@ -36,10 +34,10 @@ def create_gui():
     import_button = tk.Button(button_frame, text="選擇 Excel 檔案", command= lambda: show_treeview(root, excel_importer))
     import_button.pack(side=tk.LEFT, padx=10)
 
-    refresh_button = tk.Button(button_frame, text="重新整理", command= lambda: show_treeview(root, excel_importer, refresh=True))
+    refresh_button = tk.Button(button_frame, text="檢視資料", command= lambda: show_treeview(root, excel_importer, refresh=True))
     refresh_button.pack(side=tk.LEFT, padx=10)
 
-    pdf_button = tk.Button(button_frame, text="產生 PDF", command= lambda: generate_pdf(excel_importer))
+    pdf_button = tk.Button(button_frame, text="產生 PDF", command= lambda: generate_pdf(root, excel_importer))
     pdf_button.pack(side=tk.LEFT, padx=10)
 
     root.mainloop()
