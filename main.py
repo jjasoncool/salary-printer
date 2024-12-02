@@ -9,6 +9,9 @@ def show_treeview(root, excel_importer, refresh=False):
     else:
         filtered_df = excel_importer.import_excel()
 
+    if filtered_df is None or filtered_df.empty:
+        tk.messagebox.showinfo("提示", "請先確認 Excel 檔案資料是否正確。\n修改月份後可點選重新整理重新載入資料。")
+        return
     show_data(root, filtered_df)
 
 def generate_pdf(excel_importer):
