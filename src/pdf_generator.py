@@ -4,6 +4,7 @@ import os, platform
 import pandas as pd
 import subprocess
 from openpyxl import load_workbook
+from openpyxl.styles import Alignment
 from PyPDF2 import PdfReader, PdfWriter
 
 # 檢查 LibreOffice 是否安裝
@@ -54,6 +55,7 @@ class PDFGenerator:
             # 扣繳方式
             # TODO: 扣繳方式不同需要修改df的數值
             print(row.iloc[36], row["扣繳方式"])
+            print(row.iloc[32], row["備註"])
 
             for map_item in mapping["mapping"]:
                 if "df_column" in map_item:
@@ -70,13 +72,18 @@ class PDFGenerator:
                                     row.iloc[map_item["df_column"]]
                                 ).strftime("%Y-%m-%d")
                             elif data_type == "string":
-                                value = str(row.iloc[map_item["df_column"]])
+                                value = str(row.iloc[map_item["df_column"]]).replace("\\n", "\n")
                             else:
                                 value = "{:,}".format(int(row.iloc[map_item["df_column"]]))
                     else:
                         value = ""
                     # 填入欄位
-                    sheet[map_item["xlsx_cell"]] = value
+                    cell = sheet[map_item["xlsx_cell"]]
+                    cell.value = value
+
+                    # 如果 value 包含換行符號，設定 wrap_text 屬性
+                    if "\n" in value:
+                        cell.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
 
             # Ensure the output directory exists
             output_dir = os.path.join(os.path.dirname(__file__), output_dir)
