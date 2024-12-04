@@ -96,10 +96,20 @@ class PDFGenerator:
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
 
+            # Save the Excel file path
             xlsx_output_path = os.path.join(
                 output_dir, f'{file_name}.xlsx'
             )
-            workbook.save(xlsx_output_path)
+            # Save the PDF file path
+            pdf_output_path = os.path.join(
+                output_dir, f'{file_name}.pdf'
+            )
+
+            try:
+                workbook.save(xlsx_output_path)
+            except PermissionError:
+                tk.messagebox.showerror("錯誤", f"無法寫入 {xlsx_output_path}，請關閉該 Excel 檔案後重試。")
+                return
 
             # load LibreOffice
             print(f"Opening {xlsx_output_path}")
@@ -112,13 +122,13 @@ class PDFGenerator:
                 else:
                     convert_command = f'soffice --headless --convert-to pdf "{xlsx_output_path}" --outdir "{output_dir}"'
                 # subprocess.run(convert_command, check=True)
-                os.system(convert_command)
+                try:
+                    os.system(convert_command)
+                except PermissionError:
+                    tk.messagebox.showerror("錯誤", f"無法寫入 {pdf_output_path}，請關閉該 PDF 檔案後重試。")
+                    return
 
             # 加密處理
-            pdf_output_path = os.path.join(
-                output_dir, f'{file_name}.pdf'
-            )
-
             with open(pdf_output_path, 'rb') as pdf_file:
                 reader = PdfReader(pdf_file)
                 writer = PdfWriter()
