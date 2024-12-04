@@ -102,4 +102,11 @@ dependencies:
   - xz=5.4.6=h8cc25b3_1
   - zlib=1.2.13=h8cc25b3_1
   - zstd=1.5.6=h8880b57_0
+  - pip:
+      - altgraph==0.17.4
+      - packaging==24.2
+      - pefile==2023.2.7
+      - pyinstaller==6.11.1
+      - pyinstaller-hooks-contrib==2024.10
+      - pywin32-ctypes==0.2.3
 prefix: D:\Projects\salary_printer\env
