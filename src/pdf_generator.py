@@ -59,12 +59,17 @@ class PDFGenerator:
 
             for map_item in mapping["mapping"]:
                 if "df_column" in map_item:
-                    # Perform operation if specified
-                    if row.iloc[map_item["df_column"]] != "":
-                        # 找 mapping 的設定資料
-                        if map_item.get("operation") == "sum":
-                            value = row.iloc[map_item["df_column"]].sum()
-                        else:
+                    # 獲取欄位索引
+                    columns = map_item["df_column"]
+                    # 找 mapping 的設定資料
+                    if map_item.get("operation") == "sum":
+                        column_values = row.iloc[columns]
+                        column_values = column_values.apply(lambda x: 0 if pd.isna(x) or x == "" else x)
+                        value = "{:,}".format(int(column_values.sum()))
+                        print(value)
+                    else:
+                        # Perform operation if specified
+                        if row.iloc[map_item["df_column"]] != "":
                             # 依據資料格式轉換
                             data_type = map_item.get("data_type")
                             if data_type == "date":
@@ -75,15 +80,16 @@ class PDFGenerator:
                                 value = str(row.iloc[map_item["df_column"]]).replace("\\n", "\n")
                             else:
                                 value = "{:,}".format(int(row.iloc[map_item["df_column"]]))
-                    else:
-                        value = ""
+                        else:
+                            value = ""
                     # 填入欄位
                     cell = sheet[map_item["xlsx_cell"]]
-                    cell.value = value
+                    cell.value = "" if str(value) == "0" else value
 
                     # 如果 value 包含換行符號，設定 wrap_text 屬性
-                    if "\n" in value:
-                        cell.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
+                    if data_type == "string":
+                        if "\n" in value:
+                            cell.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
 
             # Ensure the output directory exists
             output_dir = os.path.join(os.path.dirname(__file__), output_dir)

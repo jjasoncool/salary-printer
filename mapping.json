@@ -70,7 +70,7 @@
             "xlsx_cell": "E10"
         },
         {
-            "df_columns": [19, 20],
+            "df_column": [19, 20],
             "xlsx_cell": "E11",
             "operation": "sum"
         },
