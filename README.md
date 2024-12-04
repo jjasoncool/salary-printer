@@ -25,6 +25,6 @@
 
 # Pyinstaller
 ## generate main.spec (manual stop)
-- `pyinstaller --onefile main.py`
+- `pyinstaller main.py`
 ## build executable file
 - `pyinstaller main.spec --clean`
