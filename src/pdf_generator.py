@@ -1,25 +1,12 @@
+import sys, os, platform
 import tkinter as tk
 import json
-import os, platform
 import pandas as pd
-import subprocess
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment
 from PyPDF2 import PdfReader, PdfWriter
 
-# 檢查 LibreOffice 是否安裝
-def _check_libreoffice_installed():
-    system = platform.system()
-    if system == "Windows":
-        command = ["where", "/R", "C:\\Program Files", "soffice"]
-    else:
-        command = ["which", "soffice"]
-
-    try:
-        subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
-        return True
-    except subprocess.CalledProcessError:
-        return False
+from src.utility import check_libreoffice_installed, get_real_output_dir
 
 class PDFGenerator:
     @staticmethod
@@ -34,7 +21,7 @@ class PDFGenerator:
     def generate(df):
         root_path = os.path.dirname(os.path.dirname(__file__))
         template_path = os.path.join(root_path, "templates/salary_form.xlsx")
-        output_dir = os.path.join(root_path, "output")
+        output_dir = get_real_output_dir("output")
         mapping = PDFGenerator.load_mapping()
 
         # print(df)
@@ -91,11 +78,6 @@ class PDFGenerator:
                         if "\n" in value:
                             cell.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
 
-            # Ensure the output directory exists
-            output_dir = os.path.join(os.path.dirname(__file__), output_dir)
-            if not os.path.exists(output_dir):
-                os.makedirs(output_dir)
-
             # Save the Excel file path
             xlsx_output_path = os.path.join(
                 output_dir, f'{file_name}.xlsx'
@@ -113,7 +95,7 @@ class PDFGenerator:
 
             # load LibreOffice
             print(f"Opening {xlsx_output_path}")
-            if not _check_libreoffice_installed():
+            if not check_libreoffice_installed():
                 raise EnvironmentError("LibreOffice is not installed or not found in system PATH.")
             else:
                 if platform.system() == "Windows":
@@ -142,4 +124,4 @@ class PDFGenerator:
 
             print("-----------------")
 
-        tk.messagebox.showinfo("提示", f"{this_month}薪資檔案已經產生在 {output_dir} 資料夾。")
+        tk.messagebox.showinfo("提示", f"{this_month}薪資檔案已經產生在 {os.path.abspath(output_dir)} 資料夾。")
