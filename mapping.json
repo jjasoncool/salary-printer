@@ -55,7 +55,8 @@
         },
         {
             "df_column": 15,
-            "xlsx_cell": "B17"
+            "xlsx_cell": "B17",
+            "show_zero": true
         },
         {
             "df_column": 16,
@@ -84,15 +85,13 @@
         },
         {
             "df_column": 23,
-            "xlsx_cell": "E17"
+            "xlsx_cell": "E17",
+            "show_zero": true
         },
         {
             "df_column": 24,
-            "xlsx_cell": "D18"
-        },
-        {
-            "df_column": 24,
-            "xlsx_cell": "D18"
+            "xlsx_cell": "D18",
+            "show_zero": true
         },
         {
             "df_column": 25,
@@ -112,11 +111,13 @@
         },
         {
             "df_column": 30,
-            "xlsx_cell": "B24"
+            "xlsx_cell": "B24",
+            "show_zero": true
         },
         {
             "df_column": 31,
-            "xlsx_cell": "B25"
+            "xlsx_cell": "B25",
+            "show_zero": true
         },
         {
             "df_column": 32,

@@ -71,7 +71,10 @@ class PDFGenerator:
                             value = ""
                     # 填入欄位
                     cell = sheet[map_item["xlsx_cell"]]
-                    cell.value = "" if str(value) == "0" else value
+                    if not map_item.get("show_zero", False):
+                        cell.value = "" if str(value) == "0" else value
+                    else:
+                        cell.value = value
 
                     # 如果 value 包含換行符號，設定 wrap_text 屬性
                     if data_type == "string":
