@@ -53,7 +53,9 @@ class ExcelImporter:
         if self.df is not None:
             year = self.year_var.get()
             # 將月份轉換成 "x月" 格式
-            month = f"{int(self.month_var.get())}月"
+            month = self.month_var.get()
+            if month != "年終":
+                month = f"{int(month)}月"
 
             filtered_df = self.df[(self.df["年度"] == year) & (self.df["月份"] == month)]
             # 結合人員資料

@@ -30,6 +30,7 @@ def create_date_frame(root):
     month_var = tk.StringVar(root)  # 建立一個字串變數來儲存選擇的月份
     # 建立月份選項列表，包含 1 到 12 月
     month_options = [str(month) for month in range(1, 13)]
+    month_options.append("年終")  # 在月份選項中加入"年終"選項
     month_var.set(str(previous_month))  # 預選上個月
     # 建立月份選單並配置其位置
     month_menu = tk.OptionMenu(date_frame, month_var, *month_options)
