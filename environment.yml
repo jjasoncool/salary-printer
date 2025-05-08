@@ -116,7 +116,7 @@ dependencies:
       - altgraph==0.17.4
       - packaging==24.2
       - pefile==2023.2.7
-      - pyinstaller==6.11.1
-      - pyinstaller-hooks-contrib==2024.10
+      - pyinstaller==6.13.0
+      - pyinstaller-hooks-contrib==2025.4
       - pywin32-ctypes==0.2.3
 prefix: D:\Projects\salary_printer\env
