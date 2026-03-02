@@ -22,14 +22,14 @@
         },
         {
             "df_column": 5,
-            "xlsx_cell": "B10"
+            "xlsx_cell": "B8"
         },
         {
-            "df_column": 7,
+            "df_column": 6,
             "xlsx_cell": "B11"
         },
         {
-            "df_column": 9,
+            "df_column": 8,
             "xlsx_cell": "B12"
         },
         {
@@ -42,95 +42,99 @@
         },
         {
             "df_column": 12,
-            "xlsx_cell": "B8",
-            "data_type": "string"
-        },
-        {
-            "df_column": 13,
-            "xlsx_cell": "B9"
-        },
-        {
-            "df_column": 14,
             "xlsx_cell": "B15"
         },
         {
+            "df_column": 13,
+            "xlsx_cell": "B9",
+            "data_type": "string"
+        },
+        {
+            "df_column": 14,
+            "xlsx_cell": "B10"
+        },
+        {
             "df_column": 15,
-            "xlsx_cell": "B17",
+            "xlsx_cell": "B16",
             "show_zero": true
         },
         {
             "df_column": 16,
-            "xlsx_cell": "E7"
+            "xlsx_cell": "B17"
         },
         {
             "df_column": 17,
-            "xlsx_cell": "E8"
+            "xlsx_cell": "E7"
         },
         {
             "df_column": 18,
+            "xlsx_cell": "E8"
+        },
+        {
+            "df_column": 19,
             "xlsx_cell": "E10"
         },
         {
-            "df_column": [19, 20],
+            "df_column": [20, 21],
             "xlsx_cell": "E11",
             "operation": "sum"
         },
         {
-            "df_column": 21,
+            "df_column": 22,
             "xlsx_cell": "E9"
         },
         {
-            "df_column": 22,
+            "df_column": 23,
             "xlsx_cell": "E12"
         },
         {
-            "df_column": 23,
+            "df_column": 24,
             "xlsx_cell": "E17",
             "show_zero": true
         },
         {
-            "df_column": 24,
+            "df_column": 25,
             "xlsx_cell": "D18",
             "show_zero": true
         },
         {
-            "df_column": 25,
+            "df_column": 26,
             "xlsx_cell": "B20"
         },
         {
-            "df_column": 26,
+            "df_column": 27,
             "xlsx_cell": "B21"
         },
         {
-            "df_column": 27,
+            "df_column": 28,
             "xlsx_cell": "B22"
         },
         {
-            "df_column": 28,
+            "df_column": 29,
             "xlsx_cell": "B23"
         },
         {
-            "df_column": 30,
+            "df_column": 31,
             "xlsx_cell": "B24",
             "show_zero": true
         },
         {
-            "df_column": 31,
+            "df_column": 32,
             "xlsx_cell": "B25",
             "show_zero": true
         },
         {
-            "df_column": 32,
+            "df_column": 33,
             "xlsx_cell": "D20",
             "data_type": "string"
         },
         {
-            "df_column": 34,
+            "df_column": 35,
             "xlsx_cell": "E5",
             "data_type": "string"
         },
         {
-            "df_column": 35,
+            "df_column": 36,
             "xlsx_cell": "E4",
             "data_type": "date"
         }

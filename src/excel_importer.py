@@ -17,7 +17,8 @@ class ExcelImporter:
         if file_path:
             # 跳過前4行，從第5行開始讀取，且不將任何行設為標題
             try:
-                df = pd.read_excel(file_path, skiprows=4, header=None, sheet_name=0, usecols="A:AH")
+                # 設定讀取範圍
+                df = pd.read_excel(file_path, skiprows=4, header=None, sheet_name=0, usecols="A:AI")
                 self.df_people = pd.read_excel(file_path, skiprows=1, header=None, sheet_name=1)
             except Exception as e:
                 messagebox.showerror("匯入錯誤", f"匯入 Excel 檔案時發生錯誤: {e}")
@@ -32,11 +33,11 @@ class ExcelImporter:
 
                 # 新增標題列
                 columns = [
-                    "編號", "年度", "月份", "姓名", "月薪", "加班費", "出差天數", "出差津貼",
-                    "海勤天數", "海勤津貼", "廚師津貼", "獎金", "請假天数", "請假扣款", "其他應發",
+                    "編號", "年度", "月份", "姓名", "本薪", "職務加給", "加班費", "出差天數", "出差津貼",
+                    "海勤天數", "海勤津貼", "廚師津貼", "獎金", "請假天數", "請假扣款", "其他應發",
                     "薪資小計", "勞保自付額", "健保自付額", "健保金額補充保費", "薪資扣繳", "海勤所得稅5%",
                     "自提勞退", "其他應扣", "應扣小計", "實領薪資", "勞保金額", "健保金額", "勞退6%金額",
-                    "其他公司負擔", "單位補充保費", "保費小計", "實付總额", "備註", "密碼"
+                    "其他公司負擔", "單位補充保費", "保費小計", "實付總額", "備註", "密碼"
                 ]
                 df.columns = columns
                 self.df_people.columns = ["姓名", "職位", "到職日", "扣繳方式"]

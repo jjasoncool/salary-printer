@@ -38,11 +38,11 @@ class PDFGenerator:
                 print("Key 'comp_name' not found in mapping")
             # 其他資料處理
             # 加密密碼
-            print(row.iloc[33], row["密碼"])
+            print(row.iloc[34], row["密碼"])
             # 扣繳方式
             # TODO: 扣繳方式不同需要修改df的數值
-            print(row.iloc[36], row["扣繳方式"])
-            print(row.iloc[32], row["備註"])
+            print(row.iloc[37], row["扣繳方式"])
+            print(row.iloc[33], row["備註"])
 
             for map_item in mapping["mapping"]:
                 if "df_column" in map_item:
